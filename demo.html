@@ -40,13 +40,13 @@
     console.log('PrintByPrinterIndex')
     // 设置打印机
     if (LODOP.SET_PRINTER_INDEX(index)) {
-      LODOP.ADD_PRINT_PDF(0,0,"100%","100%","C:\Users\Admin\Desktop\printTestPdf.pdf");
+      LODOP.ADD_PRINT_PDF(0,0,"100%","100%","C:\\Users\\Admin\\Desktop\\printKdPdf.pdf");
       LODOP.PRINT()
     }
   }
   function PreviewByPrinterIndex (intPrinterIndex) {
     CreatePrintPage()
-    LODOP.ADD_PRINT_PDF(0,0,"100%","100%","C:\Users\Admin\Desktop\printTestPdf.pdf");
+    LODOP.ADD_PRINT_PDF(0,0,"100%","100%","C:\\Users\\Admin\\Desktop\\printTestPdf.pdf");
     if (LODOP.SET_PRINTER_INDEX(intPrinterIndex))
       LODOP.PREVIEW()
   }
