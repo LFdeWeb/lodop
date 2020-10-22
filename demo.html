@@ -24,18 +24,20 @@
   function CreatePrintPage () {
     LODOP = getLodop()
     LODOP.PRINT_INIT('打印控件功能演示_Lodop功能_测试页一')
-    window.onload = () => {
+    window.onload = function  () {
       let count = LODOP.GET_PRINTER_COUNT()
       let obj = {}
       for (let i = 0; i < count; i++) {
         obj[i] = LODOP.GET_PRINTER_NAME(i);
       }
+      console.log('onload')
       console.log(obj);
     }
   }
 
   function PrintByPrinterIndex (index) {
     CreatePrintPage()
+    console.log('PrintByPrinterIndex')
     // 设置打印机
     if (LODOP.SET_PRINTER_INDEX(index)) {
       LODOP.ADD_PRINT_PDF(0,0,"100%","100%","C:\Users\Admin\Desktop\printTestPdf.pdf");
@@ -43,6 +45,7 @@
     }
   }
   function PreviewByPrinterIndex (intPrinterIndex) {
+    CreatePrintPage()
     LODOP.ADD_PRINT_PDF(0,0,"100%","100%","C:\Users\Admin\Desktop\printTestPdf.pdf");
     if (LODOP.SET_PRINTER_INDEX(intPrinterIndex))
       LODOP.PREVIEW()
