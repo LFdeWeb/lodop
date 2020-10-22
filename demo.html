@@ -16,20 +16,25 @@
     var LODOP //声明为全局变量
     LODOP = getLodop()
     LODOP.PRINT_INIT('打印控件功能演示_Lodop功能_测试页一')
-    LODOP.ADD_PRINT_IMAGE(30,150,400,400,"<img border='0' src='http://www.lodop.net/demolist/PrintSample8.jpg' />");
   }
 
-  function PrintByPrinterIndex () {
+  function PrintByPrinterIndex (index) {
     CreatePrintPage()
-    //LODOP.SET_PRINT_MODE("TRYLINKPRINTER_NOALERT",true);//这个语句设置网络共享打印机连接不通时是否提示一下
+    let count = LODOP.GET_PRINTER_COUNT()
+    let obj = {}
+    for (let i = 0; i < count; i++) {
+      obj[i] = LODOP.GET_PRINTER_NAME(i);
+    }
+    console.log(obj);
     if (LODOP.SET_PRINTER_INDEX(0)) {
-      LODOP.ADD_PRINT_PDF(0,0,"100%","100%","/Users/bytedance/Desktop/windows_print.pdf");
+      LODOP.ADD_PRINT_PDF(0,0,"100%","100%","http://wms-test.bytedance.net/api/warehouse/exitPrintTestPdf?x-wms-web-session-id=4e0a5eb84be739377989f2cbc6e8e0b5");
       LODOP.PRINT()
     }
   }
 </script>
 <body>
-<button onclick="PrintByPrinterIndex()">click to print</button>
+<input type="text" id="index">
+<button onclick="PrintByPrinterIndex(document.getElementById('index').value)">click to print</button>
 </body>
 </html>
 <!-- 什么时候 是需要clodop的 什么时候是
