@@ -10,31 +10,53 @@
 是否得使用clodop
 如果需要使用则进行进行本地的locahost 加载 clodop （通信代码、lodop 对象 加载是否成功 是否需要升级，对应的api等)
 -->
+<style>
+    .btnc {
+        margin-top: 50px;
+        width: 200px;
+        display: flex;
+        align-items: center;
+    }
+</style>
 <script language="javascript" src="./LodopFuncs.js"></script>
 <script>
+  var LODOP //声明为全局变量
   function CreatePrintPage () {
-    var LODOP //声明为全局变量
     LODOP = getLodop()
     LODOP.PRINT_INIT('打印控件功能演示_Lodop功能_测试页一')
+    window.onload = () => {
+      let count = LODOP.GET_PRINTER_COUNT()
+      let obj = {}
+      for (let i = 0; i < count; i++) {
+        obj[i] = LODOP.GET_PRINTER_NAME(i);
+      }
+      console.log(obj);
+    }
   }
 
   function PrintByPrinterIndex (index) {
     CreatePrintPage()
-    let count = LODOP.GET_PRINTER_COUNT()
-    let obj = {}
-    for (let i = 0; i < count; i++) {
-      obj[i] = LODOP.GET_PRINTER_NAME(i);
-    }
-    console.log(obj);
-    if (LODOP.SET_PRINTER_INDEX(0)) {
+    // 设置打印机
+    if (LODOP.SET_PRINTER_INDEX(index)) {
       LODOP.ADD_PRINT_PDF(0,0,"100%","100%","C:\Users\Admin\Desktop\printTestPdf.pdf");
       LODOP.PRINT()
     }
   }
+  function PreviewByPrinterIndex (intPrinterIndex) {
+    LODOP.ADD_PRINT_PDF(0,0,"100%","100%","C:\Users\Admin\Desktop\printTestPdf.pdf");
+    if (LODOP.SET_PRINTER_INDEX(intPrinterIndex))
+      LODOP.PREVIEW()
+  }
+
 </script>
 <body>
-<input type="text" id="index">
+<div> 打印 ：<input type="text" id="index"></div>
+<div> 预览 ：<input type="text" id="preview"></div>
+<div class="btnc">
+
 <button onclick="PrintByPrinterIndex(document.getElementById('index').value)">click to print</button>
+<button onclick="PreviewByPrinterIndex(document.getElementById('preview').value)">click to preview</button>
+</div>
 </body>
 </html>
 <!-- 什么时候 是需要clodop的 什么时候是
