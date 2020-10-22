@@ -6,6 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+<!-- 这个会检测
+是否得使用clodop
+如果需要使用则进行进行本地的locahost 加载 clodop （通信代码、lodop 对象 加载是否成功 是否需要升级，对应的api等)
+-->
 <script language="javascript" src="./LodopFuncs.js"></script>
 <script>
   function CreatePrintPage () {
@@ -18,11 +22,26 @@
   function PrintByPrinterIndex () {
     CreatePrintPage()
     //LODOP.SET_PRINT_MODE("TRYLINKPRINTER_NOALERT",true);//这个语句设置网络共享打印机连接不通时是否提示一下
-    if (LODOP.SET_PRINTER_INDEX(0))
+    if (LODOP.SET_PRINTER_INDEX(0)) {
+      LODOP.ADD_PRINT_PDF(0,0,"100%","100%","/Users/bytedance/Desktop/windows_print.pdf");
       LODOP.PRINT()
+    }
   }
 </script>
 <body>
 <button onclick="PrintByPrinterIndex()">click to print</button>
 </body>
 </html>
+<!-- 什么时候 是需要clodop的 什么时候是
+需要lodop的？ 他们两个的区别是什么
+判断是否支持lodop
+没有lodop需要进行下载
+如何 打印返回的pdf
+获取 打印机列表
+选择对应的打印机
+设置纸张大小
+不预览直接打印
+
+
+
+ -->
