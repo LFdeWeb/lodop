@@ -40,7 +40,7 @@
     console.log('PrintByPrinterIndex')
     // 设置打印机
     if (LODOP.SET_PRINTER_INDEX(index)) {
-      LODOP.ADD_PRINT_PDF(0,0,"100%","100%","C:\\Users\\Admin\\Desktop\\printKdPdf.pdf");
+      LODOP.ADD_PRINT_PDF(0,0,"100%","100%","http://wms-test.bytedance.net/api/warehouse/printKdPdf?x-wms-web-session-id=fcf1b5cdfe53a9fa90f86a158f83332c");
       LODOP.PRINT()
     }
   }
